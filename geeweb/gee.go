@@ -76,6 +76,49 @@ func (group *RouterGroup) POST(pattern string, handler HandlerFunc) {
 	group.addRoute("POST", pattern, handler)
 }
 
+// PUT defines the method to add PUT request
+func (group *RouterGroup) PUT(pattern string, handler HandlerFunc) {
+	group.addRoute("PUT", pattern, handler)
+}
+
+// DELETE defines the method to add DELETE request
+func (group *RouterGroup) DELETE(pattern string, handler HandlerFunc) {
+	group.addRoute("DELETE", pattern, handler)
+}
+
+// PATCH defines the method to add PATCH request
+func (group *RouterGroup) PATCH(pattern string, handler HandlerFunc) {
+	group.addRoute("PATCH", pattern, handler)
+}
+
+// HEAD defines the method to add HEAD request
+func (group *RouterGroup) HEAD(pattern string, handler HandlerFunc) {
+	group.addRoute("HEAD", pattern, handler)
+}
+
+// OPTIONS defines the method to add OPTIONS request
+func (group *RouterGroup) OPTIONS(pattern string, handler HandlerFunc) {
+	group.addRoute("OPTIONS", pattern, handler)
+}
+
+// TRACE defines the method to add TRACE request
+func (group *RouterGroup) TRACE(pattern string, handler HandlerFunc) {
+	group.addRoute("TRACE", pattern, handler)
+}
+
+// Any registers a route that matches all the HTTP methods.
+// GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS, TRACE.
+func (group *RouterGroup) Any(pattern string, handler HandlerFunc) {
+	group.GET(pattern, handler)
+	group.POST(pattern, handler)
+	group.PUT(pattern, handler)
+	group.DELETE(pattern, handler)
+	group.PATCH(pattern, handler)
+	group.HEAD(pattern, handler)
+	group.OPTIONS(pattern, handler)
+	group.TRACE(pattern, handler)
+}
+
 // create static handler
 func (group *RouterGroup) createStaticHandler(relativePath string, fs http.FileSystem) HandlerFunc {
 	absolutePath := path.Join(group.prefix, relativePath)
